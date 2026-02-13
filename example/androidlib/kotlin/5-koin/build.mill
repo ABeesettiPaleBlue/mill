@@ -11,9 +11,6 @@ package build
 
 import mill.*, androidlib.*, kotlinlib.*
 
-import coursier.core.{MinimizedExclusions, ModuleName, Organization}
-import coursier.params.ResolutionParams
-
 // Create and configure an Android SDK module to manage Android SDK paths and tools.
 object androidSdkModule0 extends AndroidSdkModule {
   def buildToolsVersion = "35.0.0"
@@ -52,6 +49,21 @@ object app extends AndroidAppKotlinModule {
     mvn"io.insert-koin:koin-androidx-navigation"
   )
 
+  object test extends AndroidAppKotlinTests, TestModule.Junit4 {
+    def mvnDeps: T[Seq[Dep]] = Seq(
+      mvn"androidx.arch.core:core-testing:2.2.0",
+      mvn"junit:junit:4.13.2",
+      mvn"io.insert-koin:koin-test-junit4",
+      mvn"io.insert-koin:koin-android-test",
+      mvn"io.insert-koin:koin-test-coroutines",
+      mvn"androidx.test.ext:junit:1.2.1",
+      mvn"androidx.test:runner:1.6.2",
+      mvn"androidx.test.espresso:espresso-core:3.6.1",
+      mvn"io.insert-koin:koin-test-junit4:1.4.1",
+      mvn"org.robolectric:robolectric:4.14.1",
+      mvn"androidx.test:core:1.6.1",
+    )
+  }
 }
 
 //// SNIPPET:END
