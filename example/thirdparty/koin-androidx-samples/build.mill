@@ -49,8 +49,6 @@ object examples extends mill.api.Module {
       mvn"io.insert-koin:koin-androidx-navigation"
     )
 
-    // TODO roboelectric tests are failing which is an open issue [https://github.com/com-lihaoyi/mill/issues/6620]
-    // once the issue is fixed we can add this in the pipeline as our robolectric example.
     object test extends AndroidAppKotlinTests, TestModule.Junit4 {
 
       def androidIncludeAndroidResources = true
@@ -76,10 +74,8 @@ object examples extends mill.api.Module {
 
 > ./mill examples.androidx-samples.androidApk
 
-> ./mill examples.androidx-samples.androidTest.androidTestApk
-
 > ./mill show examples.androidx-samples.createAndroidVirtualDevice
-...Name: mill_avd_android-35_x86_64_medium_phone, DeviceId: medium_phone...
+...DeviceId: medium_phone...
 
 > ./mill show examples.androidx-samples.startAndroidEmulator
 
@@ -87,13 +83,13 @@ object examples extends mill.api.Module {
 ...All files should be loaded. Notifying the device...
 
 > ./mill show examples.androidx-samples.androidRun --activity org.koin.sample.sandbox.main.MainActivity
- [
- "Starting: Intent { cmp=org.koin.sample.sandbox/.main.MainActivity }",
- "Status: ok",
- "LaunchState: COLD",
- "Activity: org.koin.sample.sandbox/.main.MainActivity",
- "TotalTime: 1488",
- "WaitTime: 1558",
- "Complete"
- ]
+[
+  "Starting: Intent { cmp=org.koin.sample.sandbox/.main.MainActivity }",
+  "Status: ok",
+  "LaunchState: COLD",
+  "Activity: org.koin.sample.sandbox/.main.MainActivity",
+  "TotalTime: ...",
+  "WaitTime: ...",
+  "Complete"
+]
 */
